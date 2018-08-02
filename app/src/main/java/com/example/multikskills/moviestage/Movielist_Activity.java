@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TabHost;
 import android.widget.Toast;
 
+import com.example.multikskills.moviestage.Adapter.PopularMovieAdapter;
 import com.example.multikskills.moviestage.Model.Apiclass;
 import com.example.multikskills.moviestage.Model.MovieResult;
 
@@ -37,7 +38,7 @@ public class Movielist_Activity extends AppCompatActivity {
         host.setup();
 
         // get the reference of RecyclerView
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         // set a GridLayoutManager with default vertical orientation and 2 number of columns
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(),2);
         recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
@@ -52,9 +53,12 @@ public class Movielist_Activity extends AppCompatActivity {
         call.enqueue(new Callback<MovieResult>() {
             @Override
             public void onResponse(Call<MovieResult> call, Response<MovieResult> response) {
-                      MovieResult result =  response.body();
+                      MovieResult result = (MovieResult) response.body();
                          List<MovieResult.ResultsBean> listofmovies = result.getResults();
-                MovieResult.ResultsBean firstmovies = listofmovies.get(0);
+                 MovieResult.ResultsBean firstmovies = listofmovies.get(1);
+               // PopularMovieAdapter adapter= new PopularMovieAd);
+
+                recyclerView.setAdapter(new PopularMovieAdapter(getApplicationContext(),listofmovies));
                 Toast.makeText(getApplicationContext(),firstmovies.getTitle(),Toast.LENGTH_SHORT).show();
             }
 

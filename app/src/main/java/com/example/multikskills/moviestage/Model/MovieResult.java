@@ -80,7 +80,7 @@ public class MovieResult {
         private String overview;
         private String release_date;
         private List<Integer> genre_ids;
-
+        private String TMDB_IMAGE_PATH = "http://image.tmdb.org/t/p/w500";
         public int getVote_count() {
             return vote_count;
         }
@@ -130,7 +130,8 @@ public class MovieResult {
         }
 
         public String getPoster_path() {
-            return poster_path;
+         //   return poster_path;
+            return TMDB_IMAGE_PATH + poster_path;
         }
 
         public void setPoster_path(String poster_path) {
