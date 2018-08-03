@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MovieDetails"
+    tools:showIn="@layout/activity_movie_details">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="@dimen/text_margin"
+           android:textStyle="bold"
+           android:textSize="15dp"
+           android:text="Title" />
+       <View
+           android:id="@+id/divider"
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:background="@color/yellow" />
+
+       <TextView
+           android:id="@+id/titley"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="@dimen/text_margin"
+           android:text="title details" />
+       <View
+           android:id="@+id/divider1"
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:background="@color/yellow" />
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="@dimen/text_margin"
+           android:textStyle="bold"
+           android:textSize="15dp"
+           android:text="Overview" />
+       <View
+           android:id="@+id/divider2"
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:background="@color/yellow" />
+       <View
+           android:id="@+id/divider3"
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:background="@color/yellow" />
+       <TextView
+           android:id="@+id/overview"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="@dimen/text_margin"
+           android:text="over details" />
+       <View
+           android:id="@+id/divider4"
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:background="@color/yellow" />
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="@dimen/text_margin"
+           android:textStyle="bold"
+           android:textSize="15dp"
+           android:text="Rating" />
+       <View
+           android:id="@+id/divider5"
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:background="@color/yellow" />
+       <TextView
+           android:id="@+id/rating"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="@dimen/text_margin"
+           android:text="rating details" />
+       <View
+           android:id="@+id/divider6"
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:background="@color/yellow" />
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="@dimen/text_margin"
+           android:textStyle="bold"
+           android:textSize="15dp"
+           android:text="Release Date" />
+       <View
+           android:id="@+id/divider7"
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:background="@color/yellow" />
+       <TextView
+           android:id="@+id/date"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_margin="@dimen/text_margin"
+           android:text="Release date details" />
+
+
+   </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

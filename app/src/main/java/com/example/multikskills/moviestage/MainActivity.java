@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
-   private Button btn;
+   private Button popular,toprated;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,11 +17,20 @@ public class MainActivity extends AppCompatActivity {
 
         //For hiding android actionbar
         myActionBar.hide();
-        btn = findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
+        popular = findViewById(R.id.popular);
+        toprated = findViewById(R.id.toprated);
+        popular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i=new Intent(MainActivity.this,Movielist_Activity.class);
+                startActivity(i);
+            }
+        });
+
+        toprated.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(MainActivity.this,TopRatedMovies.class);
                 startActivity(i);
             }
         });

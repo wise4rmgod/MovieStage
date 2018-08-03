@@ -1,6 +1,7 @@
 package com.example.multikskills.moviestage.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.multikskills.moviestage.Model.MovieResult;
+import com.example.multikskills.moviestage.MovieDetails;
 import com.example.multikskills.moviestage.R;
 import com.squareup.picasso.Picasso;
 
@@ -62,23 +64,23 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
             Picasso.get().load(moviesz.getPoster_path())
                     .placeholder(R.drawable.spiderman)
                     .error(R.drawable.errorimage)
-                    .resize(300, 300)
+                    .fit()
+                  //  .resize(300, 300)
                     .into(holder.img);
 
            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(mContext,moviesz.getTitle(),Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(mContext,""+moviesz.getId(),Toast.LENGTH_SHORT).show();
 
-                    /**
-                    Intent i = new Intent(mContext, ViewEntryActivity.class);
+                    Intent i = new Intent(mContext, MovieDetails.class);
                     //pass data though intent using puExtra
-                    i.putExtra("title", journals.getTitle());
-                    i.putExtra("message",journals.getMessage());
-                    i.putExtra("date", journals.getDate());
-                    i.putExtra("key", journals.getKey());
+                    i.putExtra("title", moviesz.getOriginal_title());
+                    i.putExtra("overview",moviesz.getOverview());
+                    i.putExtra("date", moviesz.getRelease_date());
+                    i.putExtra("rating", moviesz.getVote_count());
+                    i.putExtra("imgurl",moviesz.getPoster_path());
                     mContext.startActivity(i);
-                     **/
 
                 }
             });
