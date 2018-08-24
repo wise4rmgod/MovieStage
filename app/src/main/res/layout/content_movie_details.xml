@@ -106,6 +106,50 @@
            android:layout_margin="@dimen/text_margin"
            android:text="Release date details" />
 
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:orientation="horizontal">
+           <Button
+               android:id="@+id/favouritebtn"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:background="@color/yellow"
+               android:paddingEnd="5dp"
+               android:layout_marginStart="10dp"
+               android:layout_marginEnd="10dp"
+               android:paddingStart="10dp"
+               android:drawableLeft="@drawable/ic_favorite_black_24dp"
+               android:textColor="@color/white"
+               android:text="Mark As Favourite" />
+           <Button
+               android:id="@+id/unfavouritebtn"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_gravity="center"
+               android:background="@color/yellow"
+               android:paddingEnd="5dp"
+               android:paddingStart="10dp"
+               android:layout_marginStart="10dp"
+               android:layout_marginEnd="10dp"
+               android:drawableLeft="@drawable/ic_unfavorite_border_black_24dp"
+               android:textColor="@color/white"
+               android:text="UnMark As Favourite" />
+       </LinearLayout>
+
+
+       <Button
+           android:id="@+id/reviewbutton"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@drawable/btndesign"
+           android:textColor="@color/yellow"
+           android:layout_marginTop="10dp"
+           android:layout_marginEnd="30dp"
+           android:layout_marginStart="30dp"
+           android:text="Movie Review"/>
+
 
    </LinearLayout>
 

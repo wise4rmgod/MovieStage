@@ -26,7 +26,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
         public class MyViewHolder extends RecyclerView.ViewHolder {
 
             public ImageView img;
-          //  public TextView text;
+
 
 
             public MyViewHolder(View view) {
@@ -34,7 +34,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
                 //initialize buttons and TextViews
                 // title =  view.findViewById(R.id.title);
                 img=  view.findViewById(R.id.img);
-              //  text= view.findViewById(R.id.textviewt);
+
 
 
             }
@@ -58,14 +58,14 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
 
             final MovieResult.ResultsBean moviesz = movies.get(position);
             //   holder.title.setText(journals.getTitle());
-           // holder.text.setText(moviesz.getTitle());
+
             //Glide.with(mContext).load(moviesz.getPoster_path()).into(holder.img);
             // "http://i.imgur.com/DvpvklR.png"
             Picasso.get().load(moviesz.getPoster_path())
                     .placeholder(R.drawable.spiderman)
                     .error(R.drawable.errorimage)
                     .fit()
-                  //  .resize(300, 300)
+                   // .resize(500, 500)
                     .into(holder.img);
 
            holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +80,7 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
                     i.putExtra("date", moviesz.getRelease_date());
                     i.putExtra("rating", moviesz.getVote_count());
                     i.putExtra("imgurl",moviesz.getPoster_path());
+                    i.putExtra("id",moviesz.getId());
                     mContext.startActivity(i);
 
                 }

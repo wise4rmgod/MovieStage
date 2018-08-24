@@ -24,7 +24,13 @@
             android:name=".MovieDetails"
             android:label="@string/title_activity_movie_details"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".TopRatedMovies"></activity>
+        <activity android:name=".TopRatedMovies" />
+        <activity android:name=".ReviewActivity" />
+        <activity android:name=".Favourite" />
+        <activity
+            android:name=".Favouritemoviedetailsshow"
+            android:label="@string/title_activity_favouritemoviedetailsshow"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -1,13 +1,17 @@
 package com.example.multikskills.moviestage;
 
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.PersistableBundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.Toast;
 
@@ -39,6 +43,7 @@ public class Movielist_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_movielist_);
         ActionBar myActionBar = getSupportActionBar();
         myActionBar.setTitle("Popular Movies");
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //For hiding android actionbar
        // myActionBar.hide();
         avi= findViewById(R.id.avi);
@@ -90,10 +95,19 @@ public class Movielist_Activity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+
+
 }

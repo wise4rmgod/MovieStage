@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.multikskills.moviestage.Model.MovieResult;
@@ -26,7 +27,7 @@ public class HighestRatedMovieAdapter extends RecyclerView.Adapter<HighestRatedM
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView img;
-        //  public TextView text;
+
 
 
         public MyViewHolder(View view) {
@@ -34,7 +35,7 @@ public class HighestRatedMovieAdapter extends RecyclerView.Adapter<HighestRatedM
             //initialize buttons and TextViews
             // title =  view.findViewById(R.id.title);
             img=  view.findViewById(R.id.img1);
-            //  text= view.findViewById(R.id.textviewt);
+
 
 
         }
@@ -58,7 +59,7 @@ public class HighestRatedMovieAdapter extends RecyclerView.Adapter<HighestRatedM
 
         final MovieResult.ResultsBean moviesz = movies.get(position);
         //   holder.title.setText(journals.getTitle());
-        // holder.text.setText(moviesz.getTitle());
+
         //Glide.with(mContext).load(moviesz.getPoster_path()).into(holder.img);
         // "http://i.imgur.com/DvpvklR.png"
         Picasso.get().load(R.drawable.spiderman)
