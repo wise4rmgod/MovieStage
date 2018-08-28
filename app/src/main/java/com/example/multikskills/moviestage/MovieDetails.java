@@ -3,10 +3,12 @@ package com.example.multikskills.moviestage;
 import android.annotation.SuppressLint;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.ActionBar;
@@ -14,9 +16,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.multikskills.moviestage.Adapter.FavouriteAdapter;
 import com.example.multikskills.moviestage.Database.AppDatabase;
@@ -26,6 +31,7 @@ import com.example.multikskills.moviestage.Model.Videointerface;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,7 +43,8 @@ public class MovieDetails extends AppCompatActivity {
   public TextView date,title,overview,rating;
   public ImageView img;
   public Button review;
-    public static Button favouritebtn,unfavouritebtn;
+  public    ToggleButton togl;
+    public Switch simpleSwitch1;
     public static String BASE_URL="https://api.themoviedb.org";
     public  static  int PAGE = 1;
     public static String API_KEY ="fcc7df8a640150a6fc5b2f0cc006e2e9";
@@ -45,6 +52,7 @@ public class MovieDetails extends AppCompatActivity {
     public static String movie_id ="movie_id";
     public FloatingActionButton fab;
     private AppDatabase mDb;
+   public SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,8 +76,8 @@ public class MovieDetails extends AppCompatActivity {
         overview = findViewById(R.id.overview);
         img = findViewById(R.id.imgdetails);
         review = findViewById(R.id.reviewbutton);
-        favouritebtn= findViewById(R.id.favouritebtn);
-        unfavouritebtn = findViewById(R.id.unfavouritebtn);
+        simpleSwitch1 = (Switch) findViewById(R.id.simpleSwitch1);
+         togl=findViewById(R.id.toggle);
         // Toast.makeText(this, (int) ratingintent,Toast.LENGTH_SHORT).show();
       //  mDb = AppDatabase.getInMemoryDatabase(getApplicationContext());
         mDb = Room.databaseBuilder(getApplicationContext(),
@@ -79,51 +87,78 @@ public class MovieDetails extends AppCompatActivity {
         title.setText(titleintent);
         overview.setText(overviewintent);
         rating.setText("" + ratingintent);
+        sharedPreferences= PreferenceManager
+                .getDefaultSharedPreferences(getApplicationContext());
 
-        unfavouritebtn.setOnClickListener(new View.OnClickListener() {
+        togl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                FavouriteEntityClass favouriteEntityClass= new FavouriteEntityClass();
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.putString("saved","paul");
+                editor.commit();
 
-                favouriteEntityClass.count=ratingintent;
-                favouriteEntityClass.date=dateintent;
-                favouriteEntityClass.favouriteid=idintent;
-                favouriteEntityClass.imgurl=imgurl;
-                favouriteEntityClass.title=titleintent;
-                favouriteEntityClass.movieid=idintent;
-                favouriteEntityClass.overview=overviewintent;
-
-                mDb.userModel().deletesingle(favouriteEntityClass);
-                Toast.makeText(MovieDetails.this,"delete Successfully",Toast.LENGTH_SHORT).show();
 
 
             }
         });
-      favouritebtn.setOnClickListener(new View.OnClickListener() {
+
+
+      simpleSwitch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View view) {
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b){
 
-                 FavouriteEntityClass favouriteEntityClass= new FavouriteEntityClass();
+                    FavouriteEntityClass favouriteEntityClass= new FavouriteEntityClass();
+                    favouriteEntityClass.count=ratingintent;
+                    favouriteEntityClass.date=dateintent;
+                    favouriteEntityClass.favouriteid=idintent;
+                    favouriteEntityClass.imgurl=imgurl;
+                    favouriteEntityClass.title=titleintent;
+                    favouriteEntityClass.movieid=idintent;
+                    favouriteEntityClass.overview=overviewintent;
+                    mDb.userModel().insert(favouriteEntityClass);
 
-                                    favouriteEntityClass.count=ratingintent;
-                                    favouriteEntityClass.date=dateintent;
-                                    favouriteEntityClass.favouriteid=idintent;
-                                    favouriteEntityClass.imgurl=imgurl;
-                                    favouriteEntityClass.title=titleintent;
-                                    favouriteEntityClass.movieid=idintent;
-                                    favouriteEntityClass.overview=overviewintent;
+                    SharedPreferences.Editor editor=sharedPreferences.edit();
+                    editor.putString("saved",titleintent);
+                    editor.apply();
+                    simpleSwitch1.getTextOn();
 
-                        mDb.userModel().insert(favouriteEntityClass);
-                        Toast.makeText(MovieDetails.this,"Saved Successfully",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MovieDetails.this,"saved successfully",Toast.LENGTH_SHORT).show();
+
+                }
+                else {
+
+                    FavouriteEntityClass favouriteEntityClass= new FavouriteEntityClass();
+                    favouriteEntityClass.count=ratingintent;
+                    favouriteEntityClass.date=dateintent;
+                    favouriteEntityClass.favouriteid=idintent;
+                    favouriteEntityClass.imgurl=imgurl;
+                    favouriteEntityClass.title=titleintent;
+                    favouriteEntityClass.movieid=idintent;
+                    favouriteEntityClass.overview=overviewintent;
+                    mDb.userModel().deletesingle(favouriteEntityClass);
+                    sharedPreferences.edit().remove("saved").apply();
+                    simpleSwitch1.getTextOff();
+                    Toast.makeText(MovieDetails.this,"delete Successfully",Toast.LENGTH_SHORT).show();
 
 
+                }
             }
-
-
-      });
-
-
+        });
+/** if(simpleSwitch1.isChecked()){
+     SharedPreferences sharedPreferences= PreferenceManager
+             .getDefaultSharedPreferences(getApplicationContext());
+     SharedPreferences.Editor editor=sharedPreferences.edit();
+     editor.putBoolean("saved",simpleSwitch1.isChecked());
+     editor.apply();
+     Toast.makeText(getApplicationContext(),"its working",Toast.LENGTH_SHORT).show();
+ }
+ else {
+     SharedPreferences sharedPreferences= PreferenceManager
+             .getDefaultSharedPreferences(getApplicationContext());
+     simpleSwitch1.setChecked(sharedPreferences.getBoolean("saved",false));
+ }  **/
         review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -192,5 +227,15 @@ public class MovieDetails extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final String titleintent = getIntent().getStringExtra("title");
+               if(sharedPreferences.getString("saved", "paul").equals(titleintent)){
+            togl.setChecked(true);
+            simpleSwitch1.setChecked(true);
+                   Toast.makeText(getApplicationContext(),sharedPreferences.getString("saved", "paul"),Toast.LENGTH_SHORT).show();
 
+               }
+    }
 }

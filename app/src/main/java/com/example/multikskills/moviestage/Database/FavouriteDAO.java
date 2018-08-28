@@ -19,6 +19,8 @@ public interface FavouriteDAO {
 
     @Query("delete from movies")
     void deletechoice();
+    @Query("select * from movies where movieid IN (movieid)")
+    List<FavouriteEntityClass> givemeid();
 
     @Delete
     void deletesingle(FavouriteEntityClass favouriteEntityClass);

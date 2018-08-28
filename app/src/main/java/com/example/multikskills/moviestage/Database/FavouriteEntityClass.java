@@ -24,4 +24,6 @@ public class FavouriteEntityClass {
     public String date;
 
 
+
+
 }

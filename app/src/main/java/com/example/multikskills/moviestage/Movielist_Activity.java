@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Parcelable;
 import android.os.PersistableBundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -37,13 +38,16 @@ public class Movielist_Activity extends AppCompatActivity {
     public static String LANGUAGE ="en-US";
     public static String CATEGORY ="popular";
     public AVLoadingIndicatorView avi;
+    private static Bundle mBundleRecyclerViewState;
+    private final String KEY_RECYCLER_STATE = "recycler_state";
+    Parcelable recyclerViewState;
+    public RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movielist_);
         ActionBar myActionBar = getSupportActionBar();
         myActionBar.setTitle("Popular Movies");
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //For hiding android actionbar
        // myActionBar.hide();
         avi= findViewById(R.id.avi);
@@ -97,17 +101,20 @@ public class Movielist_Activity extends AppCompatActivity {
 
     }
 
+   /**
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-
+        recyclerViewState= recyclerView.getLayoutManager().onSaveInstanceState();
+        outState.putParcelable("work",recyclerViewState);
         super.onSaveInstanceState(outState);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-    }
+        if(savedInstanceState!=null)
+            recyclerViewState = savedInstanceState.getParcelable("work");
 
-
+    }  **/
 
 }
