@@ -21,6 +21,8 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import com.example.multikskills.moviestage.Model.MovieResult;
+
 @Database(entities = {FavouriteEntityClass.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 

@@ -106,18 +106,14 @@
            android:layout_margin="@dimen/text_margin"
            android:text="Release date details" />
 
-           <Switch
-               android:id="@+id/simpleSwitch1"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_gravity="center"
-               android:textOn="Unmarked Favourate Movie"
-               android:textOff="Mark As Favourite"
-               android:text="Mark As Favourite" />
-<ToggleButton
+    <ToggleButton
     android:id="@+id/toggle"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+        android:textOn="Unmarked Favourate Movie"
+        android:textOff="Mark As Favourite"
+        />
 
        <Button
            android:id="@+id/reviewbutton"

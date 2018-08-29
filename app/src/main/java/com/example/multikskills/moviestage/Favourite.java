@@ -1,9 +1,12 @@
 package com.example.multikskills.moviestage;
 
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,8 +32,7 @@ public class Favourite extends AppCompatActivity {
         // myActionBar.hide();
 
         mDb = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "dbname").allowMainThreadQueries()
-                .build();
+                AppDatabase.class, "dbname").build();
 
         boolean connected = false;
         ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -52,14 +54,14 @@ public class Favourite extends AppCompatActivity {
         // set a GridLayoutManager with default vertical orientation and 2 number of columns
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(),2);
         recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
-        List<FavouriteEntityClass> favlist= mDb.userModel().loadAllDetails();
+        final LiveData<List<FavouriteEntityClass>> favlist= mDb.userModel().loadAllDetails();
+        favlist.observe(this, new Observer<List<FavouriteEntityClass>>() {
+            @Override
+            public void onChanged(@Nullable List<FavouriteEntityClass> favouriteEntityClasses) {
+                recyclerView.setAdapter(new FavouriteAdapter(getApplicationContext(), favouriteEntityClasses));
+            }
+        });
 
-        //
-         for (FavouriteEntityClass fav : favlist){
-             recyclerView.setAdapter(new FavouriteAdapter(getApplicationContext(),favlist));
 
-         }
     }
-
-
 }

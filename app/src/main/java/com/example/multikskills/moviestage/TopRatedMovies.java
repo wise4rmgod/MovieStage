@@ -37,7 +37,6 @@ public class TopRatedMovies extends AppCompatActivity {
         setContentView(R.layout.activity_top_rated_movies);
         ActionBar myActionBar = getSupportActionBar();
         myActionBar.setTitle("Top Rated Movies");
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
          avi= findViewById(R.id.avi);
         avi.show();
         // get the reference of RecyclerView

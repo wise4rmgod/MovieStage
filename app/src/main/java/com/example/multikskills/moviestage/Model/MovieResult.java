@@ -1,5 +1,8 @@
 package com.example.multikskills.moviestage.Model;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import java.util.List;
 
 public class MovieResult {

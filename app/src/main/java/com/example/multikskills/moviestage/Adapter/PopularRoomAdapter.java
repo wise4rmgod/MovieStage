@@ -1,6 +1,5 @@
 package com.example.multikskills.moviestage.Adapter;
 
-import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -9,19 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.multikskills.moviestage.Database.FavouriteEntityClass;
-import com.example.multikskills.moviestage.Model.MovieResult;
+import com.example.multikskills.moviestage.Model.PopularRoomClass;
 import com.example.multikskills.moviestage.MovieDetails;
 import com.example.multikskills.moviestage.R;
 
 
 import java.util.List;
 
-public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyViewHolder> {
 
-    private List<FavouriteEntityClass> favmovies;
+public class PopularRoomAdapter extends RecyclerView.Adapter<PopularRoomAdapter.MyViewHolder> {
+
+    private List<PopularRoomClass> favmovies;
     public Context mContext;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -39,40 +37,28 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
     }
 
     //constructor
-    public FavouriteAdapter(Context mContext, List<FavouriteEntityClass> favmovies) {
+    public PopularRoomAdapter(Context mContext, List<PopularRoomClass> favmovies) {
         this.favmovies = favmovies;
         this.mContext = mContext;
     }
 
     @Override
-    public FavouriteAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PopularRoomAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //set layout to itemView using Layout inflater
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.popularlist, parent, false);
-        return new FavouriteAdapter.MyViewHolder(itemView);
+        return new PopularRoomAdapter.MyViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(FavouriteAdapter.MyViewHolder holder, final int position) {
+    public void onBindViewHolder(PopularRoomAdapter.MyViewHolder holder, final int position) {
 
-        final FavouriteEntityClass moviesz = favmovies.get(position);
+        final PopularRoomClass moviesz = favmovies.get(position);
         //   holder.title.setText(journals.getTitle());
         // holder.text.setText(moviesz.getTitle());
         //Glide.with(mContext).load(moviesz.getPoster_path()).into(holder.img);
         // "http://i.imgur.com/DvpvklR.png"
-       /** Picasso.get().load(moviesz.imgurl)
-                .placeholder(R.drawable.spiderman)
-                .error(R.drawable.errorimage)
-                .fit()
-                //  .resize(300, 300)
-                .into(holder.img);  **/
-        Glide.with(mContext)
-                .load(moviesz.imgurl)
-                //.centerCrop()
-                .fitCenter()
-                .placeholder(R.drawable.errorimage)
-                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                .crossFade()
-                .into(holder.img);
+
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,3 +87,4 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
 
 
 }
+

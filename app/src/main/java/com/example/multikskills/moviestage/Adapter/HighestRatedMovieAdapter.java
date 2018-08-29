@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.example.multikskills.moviestage.Model.MovieResult;
 import com.example.multikskills.moviestage.MovieDetails;
 import com.example.multikskills.moviestage.R;
-import com.squareup.picasso.Picasso;
+
 
 import java.util.List;
 
@@ -62,12 +62,12 @@ public class HighestRatedMovieAdapter extends RecyclerView.Adapter<HighestRatedM
 
         //Glide.with(mContext).load(moviesz.getPoster_path()).into(holder.img);
         // "http://i.imgur.com/DvpvklR.png"
-        Picasso.get().load(R.drawable.spiderman)
+      /**  Picasso.get().load(R.drawable.spiderman)
                 .placeholder(R.drawable.spiderman)
                 .error(R.drawable.errorimage)
                 .fit()
                 //  .resize(300, 300)
-                .into(holder.img);
+                .into(holder.img);  **/
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

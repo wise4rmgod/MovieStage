@@ -1,5 +1,6 @@
 package com.example.multikskills.moviestage;
 
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.net.ConnectivityManager;
@@ -11,19 +12,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.TabHost;
 import android.widget.Toast;
 
-import com.example.multikskills.moviestage.Adapter.HighestRatedMovieAdapter;
+import com.example.multikskills.moviestage.Adapter.FavouriteAdapter;
 import com.example.multikskills.moviestage.Adapter.PopularMovieAdapter;
+import com.example.multikskills.moviestage.Adapter.PopularRoomAdapter;
+import com.example.multikskills.moviestage.Database.AppDatabase;
+import com.example.multikskills.moviestage.Database.FavouriteEntityClass;
 import com.example.multikskills.moviestage.Model.Apiclass;
 import com.example.multikskills.moviestage.Model.MovieResult;
+import com.example.multikskills.moviestage.Model.PopularRoomClass;
 import com.wang.avi.AVLoadingIndicatorView;
-
 import java.util.List;
 
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,10 +41,11 @@ public class Movielist_Activity extends AppCompatActivity {
     public static String LANGUAGE ="en-US";
     public static String CATEGORY ="popular";
     public AVLoadingIndicatorView avi;
-    private static Bundle mBundleRecyclerViewState;
     private final String KEY_RECYCLER_STATE = "recycler_state";
-    Parcelable recyclerViewState;
+    public GridLayoutManager gridLayoutManager;
+    public  String RECYCLER_VIEW_POSITION="joli";
     public RecyclerView recyclerView;
+    private AppDatabase mDb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,9 @@ public class Movielist_Activity extends AppCompatActivity {
         myActionBar.setTitle("Popular Movies");
         //For hiding android actionbar
        // myActionBar.hide();
+     /**   mDb = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "dbname").allowMainThreadQueries()
+                .build(); **/
         avi= findViewById(R.id.avi);
         avi.show();
         boolean connected = false;
@@ -68,14 +75,20 @@ public class Movielist_Activity extends AppCompatActivity {
         // get the reference of RecyclerView
         final RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         // set a GridLayoutManager with default vertical orientation and 2 number of columns
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(),2);
+       gridLayoutManager  = new GridLayoutManager(getApplicationContext(),2);
         recyclerView.setLayoutManager(gridLayoutManager); // set LayoutManager to RecyclerView
 
 
         // this is for popular movies from moviedb api
+        int cacheSize = 10 * 1024 * 1024; // 10 MB
+        Cache cache = new Cache(getCacheDir(), cacheSize);
 
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .cache(cache)
+                .build();
         Retrofit retrofit= new Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -89,32 +102,32 @@ public class Movielist_Activity extends AppCompatActivity {
                  MovieResult.ResultsBean firstmovies = listofmovies.get(1);
                // PopularMovieAdapter adapter= new PopularMovieAd);
                 avi.hide();
+            /**    PopularRoomClass moviesresult = new PopularRoomClass();
+                                       moviesresult.date;
+                                       moviesresult.title;
+                                       moviesresult.imgurl;
+                                       mDb.userModel().insertpopular(moviesresult);  **/
                 recyclerView.setAdapter(new PopularMovieAdapter(getApplicationContext(),listofmovies));
              //   Toast.makeText(getApplicationContext(),firstmovies.getTitle(),Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<MovieResult> call, Throwable t) {
-
+               Toast.makeText(Movielist_Activity.this,"bad network",Toast.LENGTH_SHORT).show();
             }
         });
 
     }
 
-   /**
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        recyclerViewState= recyclerView.getLayoutManager().onSaveInstanceState();
-        outState.putParcelable("work",recyclerViewState);
-        super.onSaveInstanceState(outState);
-    }
+  /**  @Override
+    protected void onResume() {
+        super.onResume();
+        List<PopularRoomClass> favlist= mDb.userModel().loadAlpopular();
+        //
+        for (PopularRoomClass fav : favlist){
 
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-        if(savedInstanceState!=null)
-            recyclerViewState = savedInstanceState.getParcelable("work");
+            recyclerView.setAdapter(new PopularRoomAdapter(getApplicationContext(),favlist));
 
+        }
     }  **/
-
 }

@@ -13,7 +13,7 @@ import com.example.multikskills.moviestage.Model.MovieResult;
 import com.example.multikskills.moviestage.Model.ReviewClass;
 import com.example.multikskills.moviestage.MovieDetails;
 import com.example.multikskills.moviestage.R;
-import com.squareup.picasso.Picasso;
+
 
 import java.util.List;
 

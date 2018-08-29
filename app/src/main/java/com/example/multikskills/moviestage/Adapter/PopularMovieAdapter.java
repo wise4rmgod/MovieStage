@@ -9,11 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.multikskills.moviestage.Model.MovieResult;
 import com.example.multikskills.moviestage.MovieDetails;
 import com.example.multikskills.moviestage.R;
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
 public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapter.MyViewHolder> {
@@ -54,20 +55,28 @@ public class PopularMovieAdapter extends RecyclerView.Adapter<PopularMovieAdapte
         }
 
         @Override
-        public void onBindViewHolder(MyViewHolder holder, final int position) {
+        public void onBindViewHolder(final MyViewHolder  holder, final int position) {
 
             final MovieResult.ResultsBean moviesz = movies.get(position);
             //   holder.title.setText(journals.getTitle());
 
             //Glide.with(mContext).load(moviesz.getPoster_path()).into(holder.img);
             // "http://i.imgur.com/DvpvklR.png"
-            Picasso.get().load(moviesz.getPoster_path())
-                    .placeholder(R.drawable.spiderman)
-                    .error(R.drawable.errorimage)
+           /** Picasso.get().load(moviesz.getPoster_path())
                     .fit()
-                   // .resize(500, 500)
+                    .memoryPolicy(MemoryPolicy.NO_CACHE)
+                    .error(R.drawable.errorimage)
                     .into(holder.img);
-
+                   // .memoryPolicy(MemoryPolicy.NO_CACHE)
+                   // .resize(500, 500)  **/
+            Glide.with(mContext)
+                    .load(moviesz.getPoster_path())
+                    //.centerCrop()
+                    .fitCenter()
+                    .placeholder(R.drawable.errorimage)
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                    .crossFade()
+                    .into(holder.img);
            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
