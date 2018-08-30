@@ -7,10 +7,10 @@ The app has two main screens
 List of movies with three choices
 Most Popular
 Highest Rated
-Favorites (requires no internet, uses SQLite to store movie data)
+Favorites (requires no internet, uses Room Database to store movie data)
 Detail view of the selected movie
 There are videos and reviews of the movie
-To add a movie to favorites, there is a Floating Action Button
+To add a movie to favorites, there is a Button
 To share the video of movie, there is Share Button on top left corner
 Get it on Google Play
 
