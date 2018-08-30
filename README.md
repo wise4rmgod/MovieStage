@@ -15,9 +15,9 @@ To share the video of movie, there is Share Button on top left corner
 Get it on Google Play
 
 # Requirements
-⋅⋅* Android Studio 3.0.1
-⋅⋅* Build Tools Version 27.0.3
-⋅⋅* Minimum Android Version: 16 (Android 4.1)
+* Android Studio 3.0.1
+* Build Tools Version 27.0.3
+* Minimum Android Version: 16 (Android 4.1)
 # How To Open
 Download as Zip and extract it
 Run Android Studio
