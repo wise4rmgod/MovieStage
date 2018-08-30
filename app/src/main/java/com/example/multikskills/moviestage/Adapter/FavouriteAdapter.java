@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.multikskills.moviestage.Database.FavouriteEntityClass;
+import com.example.multikskills.moviestage.FavouriteDetails;
 import com.example.multikskills.moviestage.Model.MovieResult;
 import com.example.multikskills.moviestage.MovieDetails;
 import com.example.multikskills.moviestage.R;
@@ -79,7 +80,7 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.MyVi
             public void onClick(View v) {
                 //  Toast.makeText(mContext,""+moviesz.getId(),Toast.LENGTH_SHORT).show();
 
-                Intent i = new Intent(mContext, MovieDetails.class);
+                Intent i = new Intent(mContext, FavouriteDetails.class);
                 //pass data though intent using puExtra
                 i.putExtra("title", moviesz.title);
                 i.putExtra("overview",moviesz.overview);

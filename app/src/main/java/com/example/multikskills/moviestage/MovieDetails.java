@@ -23,6 +23,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.multikskills.moviestage.Adapter.FavouriteAdapter;
 import com.example.multikskills.moviestage.Database.AppDatabase;
 import com.example.multikskills.moviestage.Database.FavouriteEntityClass;
@@ -151,6 +153,14 @@ public class MovieDetails extends AppCompatActivity {
                 .error(R.drawable.errorimage)
                 .fit()
                 .into(img);  **/
+        Glide.with(this)
+                .load(imgurl)
+                .centerCrop()
+                //.fitCenter()
+                .placeholder(R.drawable.errorimage)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .crossFade()
+                .into(img);
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 

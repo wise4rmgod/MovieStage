@@ -1,12 +1,8 @@
 package com.example.multikskills.moviestage;
 
-import android.arch.persistence.room.Room;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Parcelable;
-import android.os.PersistableBundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,14 +10,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.example.multikskills.moviestage.Adapter.FavouriteAdapter;
 import com.example.multikskills.moviestage.Adapter.PopularMovieAdapter;
-import com.example.multikskills.moviestage.Adapter.PopularRoomAdapter;
 import com.example.multikskills.moviestage.Database.AppDatabase;
-import com.example.multikskills.moviestage.Database.FavouriteEntityClass;
 import com.example.multikskills.moviestage.Model.Apiclass;
 import com.example.multikskills.moviestage.Model.MovieResult;
-import com.example.multikskills.moviestage.Model.PopularRoomClass;
 import com.wang.avi.AVLoadingIndicatorView;
 import java.util.List;
 

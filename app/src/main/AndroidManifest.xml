@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Movielist_Activity"/>
+        <activity android:name=".Movielist_Activity" />
         <activity
             android:name=".MovieDetails"
             android:label="@string/title_activity_movie_details"
@@ -30,7 +30,8 @@
         <activity
             android:name=".Favouritemoviedetailsshow"
             android:label="@string/title_activity_favouritemoviedetailsshow"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".FavouriteDetails"></activity>
     </application>
 
 </manifest>

@@ -6,10 +6,6 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
-import com.example.multikskills.moviestage.Model.MovieResult;
-import com.example.multikskills.moviestage.Model.PopularRoomClass;
-import com.example.multikskills.moviestage.MovieDetails;
-
 import java.util.List;
 import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
